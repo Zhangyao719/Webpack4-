@@ -1,5 +1,8 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const env = process.env.NODE_ENV;
 
 module.exports = {
     // entry: path.resolve(__dirname, '../src/main.jsx'),
@@ -30,6 +33,9 @@ module.exports = {
         ],
     },
     plugins: [
+        new webpack.DefinePlugin({
+            'process.env': require(`./config/${env}.env`),
+        }),
         // https://github.com/jantimon/html-webpack-plugin#options
         // https://www.jianshu.com/p/2b872ae3362d 默认使用ejs渲染模板
         new HtmlWebpackPlugin({
