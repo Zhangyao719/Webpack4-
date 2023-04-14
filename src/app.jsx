@@ -6,6 +6,8 @@ import {
     Redirect,
 } from 'react-router-dom';
 
+import './app.css';
+
 const LazyHome = React.lazy(() =>
     import(
         /* webpackChunkName: "home" */

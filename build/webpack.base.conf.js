@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const env = process.env.NODE_ENV;
 
@@ -24,6 +25,10 @@ module.exports = {
                     },
                 },
             },
+            {
+                test: /\.css$/,
+                use: [MiniCssExtractPlugin.loader, 'css-loader'],
+            },
         ],
     },
     plugins: [
@@ -38,6 +43,11 @@ module.exports = {
             inject: 'body', // 指定静态资源插入到 HTML 中的位置 (所有js资源插入到<body>的底部)
             // 也可以添加自定义的属性...
             showFavicon: true,
+        }),
+        new MiniCssExtractPlugin({
+            filename: 'css/[name].css', // 同步加载的 css 资源名
+            chunkFilename: 'css/[id].css', // 异步加载的 css 资源名
+            ignoreOrder: true, // 禁用 css order 警告 https://webpack.docschina.org/plugins/mini-css-extract-plugin/#remove-order-warnings
         }),
     ],
     optimization: {

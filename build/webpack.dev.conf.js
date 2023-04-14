@@ -1,4 +1,5 @@
 const merge = require('webpack-merge');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
 const path = require('path');
 const base = require('./webpack.base.conf.js');
@@ -23,5 +24,12 @@ module.exports = merge(base, {
         // publicPath: '/dist/',
     },
     devServer,
-    plugins: [new webpack.HotModuleReplacementPlugin()],
+    plugins: [
+        new webpack.HotModuleReplacementPlugin(),
+        new MiniCssExtractPlugin({
+            filename: 'css/[name].css', // 同步加载的 css 资源名
+            chunkFilename: 'css/[id].css', // 异步加载的 css 资源名
+            ignoreOrder: true, // 禁用 css order 警告 https://webpack.docschina.org/plugins/mini-css-extract-plugin/#remove-order-warnings
+        }),
+    ],
 });
