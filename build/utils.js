@@ -1,8 +1,15 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 // 抽离 style-loader + css-loader + postcss-loader 公共处理
-exports.getCSSLoaders = ({ isExtract = true, cssLoaderOptions } = {}) => [
-    isExtract ? MiniCssExtractPlugin.loader : 'style-loader',
+exports.getCSSLoaders = ({
+    isExtract = true,
+    styleLoaderOptions = {},
+    cssLoaderOptions = {},
+} = {}) => [
+    {
+        loader: isExtract ? MiniCssExtractPlugin.loader : 'style-loader',
+        options: { ...styleLoaderOptions },
+    },
     {
         loader: 'css-loader',
         options: {

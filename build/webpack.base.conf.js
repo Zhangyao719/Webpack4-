@@ -28,12 +28,15 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: getCSSLoaders(),
+                use: getCSSLoaders({
+                    styleLoaderOptions: { publicPath: '../' }, // 指定 css 文件中, 引入静态资源的路径
+                }),
             },
             {
                 test: /\.(sass|scss)$/,
                 use: [
                     ...getCSSLoaders({
+                        styleLoaderOptions: { publicPath: '../' },
                         cssLoaderOptions: { importLoaders: 2 },
                     }),
                     'sass-loader',
