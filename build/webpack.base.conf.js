@@ -1,7 +1,6 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const { getCSSLoaders } = require('./utils');
 
 const env = process.env.NODE_ENV;
@@ -39,6 +38,16 @@ module.exports = {
                     }),
                     'sass-loader',
                 ],
+            },
+            {
+                test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
+                loader: 'url-loader',
+                options: {
+                    limit: 1024 * 5,
+                    name: '[name].[hash:8].[ext]',
+                    outputPath: 'assets', // 指定要放置目标文件的文件系统路径, 即 'dist' 目录下的路径
+                    // esModule: false, // 禁用 es module 导入后, 只能使用 require() 来导入图片和文件
+                },
             },
         ],
     },
