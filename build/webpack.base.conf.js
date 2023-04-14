@@ -8,7 +8,7 @@ module.exports = {
     // entry: path.resolve(__dirname, '../src/main.jsx'),
     entry: {
         main: path.resolve(__dirname, '../src/main.jsx'),
-        framework: ['react', 'react-dom'], // 配合 splitChunks cacheGroup 使用
+        framework: ['react', 'react-dom', 'react-router-dom'], // 配合 splitChunks cacheGroup 使用
     },
     module: {
         rules: [
