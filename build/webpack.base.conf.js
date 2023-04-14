@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const { getCSSLoaders } = require('./utils');
 
 const env = process.env.NODE_ENV;
 
@@ -28,11 +29,16 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader'],
+                use: getCSSLoaders(),
             },
             {
                 test: /\.(sass|scss)$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+                use: [
+                    ...getCSSLoaders({
+                        cssLoaderOptions: { importLoaders: 2 },
+                    }),
+                    'sass-loader',
+                ],
             },
         ],
     },
