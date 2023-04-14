@@ -11,6 +11,7 @@ module.exports = {
         main: path.resolve(__dirname, '../src/main.jsx'),
         framework: ['react', 'react-dom', 'react-router-dom'], // 配合 splitChunks cacheGroup 使用
     },
+
     module: {
         rules: [
             {
@@ -29,8 +30,13 @@ module.exports = {
                 test: /\.css$/,
                 use: [MiniCssExtractPlugin.loader, 'css-loader'],
             },
+            {
+                test: /\.(sass|scss)$/,
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+            },
         ],
     },
+
     plugins: [
         new webpack.DefinePlugin({
             'process.env': require(`./config/${env}.env`),
@@ -44,12 +50,8 @@ module.exports = {
             // 也可以添加自定义的属性...
             showFavicon: true,
         }),
-        new MiniCssExtractPlugin({
-            filename: 'css/[name].css', // 同步加载的 css 资源名
-            chunkFilename: 'css/[id].css', // 异步加载的 css 资源名
-            ignoreOrder: true, // 禁用 css order 警告 https://webpack.docschina.org/plugins/mini-css-extract-plugin/#remove-order-warnings
-        }),
     ],
+
     optimization: {
         splitChunks: {
             maxInitialRequests: 4, // 最大并行请求的资源数 (首次加载时, 要求更高, 因此手动设置为更低)

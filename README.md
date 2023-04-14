@@ -17,8 +17,12 @@ https://github.com/vortesnail/blog/issues/4
     - cross-env 添加 process 环境变量
     - DefinePlugin 添加项目中的环境变量
 6. devServer 基础配置
+    - v4 使用 3+ 的版本
 7. devServer 优化：解决 browser history 404 问题
 8. devServer 优化：HMR 无刷新配置，在文件入口添加 module.hot 判断
 9. 解析样式文件
     - css 解析：style-loader + css-loader
-    - css 分离：mini-css-extract-plugin
+    - css 分离：mini-css-extract-plugin (v4 使用 1+ 的版本)
+10. sass 的解析
+    - node-sass4.14+
+    - sass-loader10+
