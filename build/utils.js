@@ -14,7 +14,6 @@ exports.getCSSLoaders = ({
         loader: 'css-loader',
         options: {
             // https://v4.webpack.docschina.org/loaders/css-loader#root
-            // todo: source-map: true
             importLoaders: 1,
             ...cssLoaderOptions,
         },

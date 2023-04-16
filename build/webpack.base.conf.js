@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const config = require('./config');
 const { getCSSLoaders } = require('./utils');
 
 const env = process.env.NODE_ENV;
@@ -11,6 +12,8 @@ module.exports = {
         main: path.resolve(__dirname, '../src/main.jsx'),
         framework: ['react', 'react-dom', 'react-router-dom'], // 配合 splitChunks cacheGroup 使用
     },
+
+    devtool: config[env].devtool,
 
     module: {
         rules: [
@@ -37,9 +40,15 @@ module.exports = {
                 use: [
                     ...getCSSLoaders({
                         styleLoaderOptions: { publicPath: '../' },
-                        cssLoaderOptions: { importLoaders: 2 },
+                        cssLoaderOptions: {
+                            importLoaders: 2,
+                            sourceMap: config[env].cssSourceMap,
+                        },
                     }),
-                    'sass-loader',
+                    {
+                        loader: 'sass-loader',
+                        options: { sourceMap: config[env].cssSourceMap },
+                    },
                 ],
             },
             {
