@@ -25,6 +25,9 @@ const LazyUser = React.lazy(() =>
 const Loading = () => <div>Loading...</div>;
 
 const App = () => {
+    const obj = {};
+    console.log('es6: ', obj?.name);
+    console.log('es6: ', false ?? 22);
     return (
         <Router>
             <Suspense fallback={<Loading />}>

@@ -147,3 +147,70 @@ dist
 
 -   devtool 不同环境，对应的 source-map 不一样
 -   css 相关处理也要额外添加 source-map 配置
+
+### 15.更多 babel runtime 转译相关的配置
+
+可系统拜读这篇文章: https://juejin.cn/post/6844904008679686152#heading-4
+
+-   `@babel/preset-env`
+
+    功能一：**新语法** 转译成 es5；
+
+    功能二：**新特性** 通过搭配 @babel/polyfill (已弃用) 来实现转译。
+
+    对于功能二需要一下配置：
+
+    ```js
+    npm install --save @babel/polyfill
+    ```
+
+    ```js
+    // 需要在其它代码之前引入
+    import '@babel/polyfill';
+    ```
+
+    ```js
+    // .babelrc 优化配置
+    [
+        '@babel/preset-env',
+        {
+            useBuiltIns: 'usage', // 按需导入
+            corejs: '3.0', // polyfill 需要安装的 core-js 版本
+        },
+    ];
+    ```
+
+    **缺点一**: babel 对每个文件的转译都会重新引用辅助函数（比如: \_classCallCheck，\_defineProperties 等），这会增加打包体积
+
+    **缺点二**：污染原型链。
+
+    **解决方法**：使用 `@babel/plugin-transform-runtime`
+
+-   `@babel/plugin-transform-runtime`
+
+    **优点一**：辅助函数的复用
+
+    **优点二**：支持原型方法的同时，不污染原型链
+
+    **优点三**：无需 polyfill
+
+    ```js
+    npm install @babel/runtime-corejs3 -S
+    ```
+
+    ```json
+    {
+        "plugins": [
+            [
+                "@babel/plugin-transform-runtime",
+                {
+                    "corejs": {
+                        "version": 3,
+                        "proposals": true
+                    },
+                    "useESModules": true
+                }
+            ]
+        ]
+    }
+    ```
