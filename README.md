@@ -219,3 +219,7 @@ dist
 
 -   webpackbar
 -   webpack-bundle-analyzer
+
+### 17. CSS 压缩
+
+-   optimize-css-assets-webpack-plugin

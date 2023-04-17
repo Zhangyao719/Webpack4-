@@ -13,7 +13,6 @@
   "dependencies": {
     "@babel/runtime": "^7.21.0",
     "@babel/runtime-corejs3": "^7.21.0",
-    "node-sass": "^4.14.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-router-dom": "^5.3.4"
@@ -30,6 +29,8 @@
     "file-loader": "^6.2.0",
     "html-webpack-plugin": "^4.5.2",
     "mini-css-extract-plugin": "^1.6.2",
+    "node-sass": "^4.14.1",
+    "optimize-css-assets-webpack-plugin": "^6.0.1",
     "postcss": "^8.4.21",
     "postcss-flexbugs-fixes": "^5.0.2",
     "postcss-loader": "^4.3.0",

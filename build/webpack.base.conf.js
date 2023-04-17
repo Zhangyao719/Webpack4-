@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackBar = require('webpackbar');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const config = require('./config');
 const { getCSSLoaders } = require('./utils');
 
@@ -116,5 +117,18 @@ module.exports = {
                 },
             },
         },
+        minimizer: [
+            new OptimizeCssAssetsPlugin({
+                // cssProcessor: require('cssnano'), // 压缩处理器, 默认 cssnano
+                // canPrint: true, // 是否在 console 中展示 log, 默认 true
+                assetNameRegExp: /\.css$/g, // 生效范围
+                cssProcessorPluginOptions: {
+                    preset: [
+                        'default',
+                        { discardComments: { removeAll: true } }, // 去除注释
+                    ],
+                },
+            }),
+        ],
     },
 };
