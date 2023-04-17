@@ -214,3 +214,8 @@ dist
         ]
     }
     ```
+
+### 16.bundle 体积监控工具
+
+-   webpackbar
+-   webpack-bundle-analyzer

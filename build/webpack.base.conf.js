@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const WebpackBar = require('webpackbar');
 const config = require('./config');
 const { getCSSLoaders } = require('./utils');
 
@@ -89,6 +90,10 @@ module.exports = {
             inject: 'body', // 指定静态资源插入到 HTML 中的位置 (所有js资源插入到<body>的底部)
             // 也可以添加自定义的属性...
             showFavicon: true,
+        }),
+        new WebpackBar({
+            name: env === 'development' ? '正在启动' : '正在打包',
+            color: '#fa8c16',
         }),
     ],
 
