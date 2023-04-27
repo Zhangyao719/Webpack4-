@@ -1,14 +1,14 @@
 const merge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
-const path = require('path');
 const base = require('./webpack.base.conf.js');
-const devServer = require('./config/devServer');
+const getDevServer = require('./config/getDevServer');
+const { PROJECT_DIST_PATH, development: config } = require('./config');
 
 module.exports = merge(base, {
     mode: 'development',
     output: {
-        path: path.resolve(__dirname, '../dist'),
+        path: PROJECT_DIST_PATH,
         filename: '[name].js', // dev-server 开启热更新, 导出不能使用 chunkhash (可以用 hash 替代)
         chunkFilename: 'chunk.[name].js',
 
@@ -20,10 +20,10 @@ module.exports = merge(base, {
         // 3. 以 '/js' 开头, host 为准   地址: http://127.0.0.1:8080/js/0.chunks.js         结果: 失败
         // 3. 以 '/dist/' 开头,          地址: http://127.0.0.1:8080/dist/0.chunks.js       结果: 能访问到，和 '' 结果一样
         // 4. 以 CDN 开头,               地址: https://cdn.com/0.chunks.js                  结果: cdn 上有就可以
-        // 所以 publicPath 要么不设, 要么和 devServer.publicPath 一致, 要么发 CDN
-        // publicPath: '/dist/',
+        // 所以 publicPath 要么为'/', 要么和 devServer.publicPath 一致, 要么发 CDN
+        publicPath: config.assetsPublicPath,
     },
-    devServer,
+    devServer: getDevServer(config.assetsPublicPath),
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new MiniCssExtractPlugin({

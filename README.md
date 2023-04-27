@@ -1,8 +1,8 @@
 # 从零配置 webpack4 + react 脚手架
 
-https://github.com/vortesnail/blog/issues/4
+<https://github.com/vortesnail/blog/issues/4>
 
-https://github.com/vortesnail/blog/issues/14
+<https://github.com/vortesnail/blog/issues/14>
 
 所有的依赖都请注意版本！
 
@@ -10,37 +10,37 @@ https://github.com/vortesnail/blog/issues/14
 
 ### 1. 基础配置
 
--   安装 webpack、webpack-cli
--   webpack-merge 区分环境
+- 安装 webpack、webpack-cli
+- webpack-merge 区分环境
 
 ### 2. babel 配置
 
--   目的：解析 jsx、es6
--   将 babel-loader 的 options 中 `presets` 和 `plugins `两个配置单独抽取到 `.babelrc` 文件中
+- 目的：解析 jsx、es6
+- 将 babel-loader 的 options 中 `presets` 和 `plugins`两个配置单独抽取到 `.babelrc` 文件中
 
 ### 3. html 模板
 
 ### 4. 代码分片
 
--   optimization.splitChunks
+- optimization.splitChunks
     多 entry 入口 配合 splitChunks.cacheGroup 提取公共依赖
 
 ### 5. 区分环境
 
--   cross-env 添加 process 环境变量
--   DefinePlugin 添加项目中的环境变量
+- cross-env 添加 process 环境变量
+- DefinePlugin 添加项目中的环境变量
 
 ### 6. devServer 基础配置
 
--   webpack 4 请使用 v3+ 的版本
+- webpack 4 请使用 v3+ 的版本
 
 ### 7. devServer 优化
 
--   解决 browser history 404 问题
+- 解决 browser history 404 问题
 
 ### 8. devServer 优化
 
--   HMR 无刷新配置，在文件入口添加 module.hot 判断
+- HMR 无刷新配置，在文件入口添加 module.hot 判断
 
     ```js
     // main.js
@@ -51,45 +51,45 @@ https://github.com/vortesnail/blog/issues/14
 
 ### 9. 解析样式文件
 
--   css 解析：style-loader + css-loader
--   css 分离：mini-css-extract-plugin (webpack 4 请使用 v1+ 的版本)
+- css 解析：style-loader + css-loader
+- css 分离：mini-css-extract-plugin (webpack 4 请使用 v1+ 的版本)
 
 ### 10. sass 的解析
 
--   node-sass 版本: v4.14+
--   sass-loader 版本: v10+
+- node-sass 版本: v4.14+
+- sass-loader 版本: v10+
 
 ### 11. postcss 处理浏览器兼容
 
--   postcss-loader v3 即以下
+- postcss-loader v3 即以下
 
-    配置文档: https://v4.webpack.docschina.org/loaders/postcss-loader#postcss-options
+    配置文档: <https://v4.webpack.docschina.org/loaders/postcss-loader#postcss-options>
 
--   postcss-loader v4+
+- postcss-loader v4+
 
-    配置文档: https://webpack.docschina.org/loaders/postcss-loader#postcssoptions
+    配置文档: <https://webpack.docschina.org/loaders/postcss-loader#postcssoptions>
 
     版本变动:
 
     1. options 配置项；
     2. 需要安装 `postcss`；
-    3. 移除 `postcss.config.js`的写法，请在`package.json` 中添加 `browserslist `。
+    3. 移除 `postcss.config.js`的写法，请在`package.json` 中添加 `browserslist`。
 
 ### 12. 处理图片等文件
 
--   url-loader + file-loader
+- url-loader + file-loader
 
 ### 13. 处理 css 中图片路径错误的问题
 
-https://www.cnblogs.com/wonyun/p/11038417.html
+<https://www.cnblogs.com/wonyun/p/11038417.html>
 
 **场景**：
 
-1. `MiniCssExtractPlugin ` 中添加了目录前缀配置，会使 打包出的 css 文件放在 css 目录下。比如：
+1. `MiniCssExtractPlugin` 中添加了目录前缀配置，会使 打包出的 css 文件放在 css 目录下。比如：
 
     ```js
     {
-    	plugins: [
+     plugins: [
             new MiniCssExtractPlugin({
                 filename: 'css/[name].css',
                 chunkFilename: 'css/[id].css',
@@ -112,7 +112,7 @@ https://www.cnblogs.com/wonyun/p/11038417.html
     }
     ```
 
-此时，在 css 中使用 `background-image: url(../xxx) `导入图片后，会发现图片的路径 `http://localhost:9000/css/assets/bgi.419d3e23.png ` 中会多出 `/css/` 导致图片加载失败。
+此时，在 css 中使用 `background-image: url(../xxx)`导入图片后，会发现图片的路径 `http://localhost:9000/css/assets/bgi.419d3e23.png` 中会多出 `/css/` 导致图片加载失败。
 
 **原因**：
 
@@ -145,14 +145,14 @@ dist
 
 ### 14. 配置 source-map 和 devtool
 
--   devtool 不同环境，对应的 source-map 不一样
--   css 相关处理也要额外添加 source-map 配置
+- devtool 不同环境，对应的 source-map 不一样
+- css 相关处理也要额外添加 source-map 配置
 
 ### 15.更多 babel runtime 转译相关的配置
 
-可系统拜读这篇文章: https://juejin.cn/post/6844904008679686152#heading-4
+可系统拜读这篇文章: <https://juejin.cn/post/6844904008679686152#heading-4>
 
--   `@babel/preset-env`
+- `@babel/preset-env`
 
     功能一：**新语法** 转译成 es5；
 
@@ -186,7 +186,7 @@ dist
 
     **解决方法**：使用 `@babel/plugin-transform-runtime`
 
--   `@babel/plugin-transform-runtime`
+- `@babel/plugin-transform-runtime`
 
     **优点一**：辅助函数的复用
 
@@ -217,9 +217,9 @@ dist
 
 ### 16.bundle 体积监控工具
 
--   webpackbar
--   webpack-bundle-analyzer
+- webpackbar
+- webpack-bundle-analyzer
 
 ### 17. CSS 压缩
 
--   optimize-css-assets-webpack-plugin
+- optimize-css-assets-webpack-plugin

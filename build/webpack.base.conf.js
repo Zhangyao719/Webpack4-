@@ -11,8 +11,15 @@ const env = process.env.NODE_ENV;
 module.exports = {
     // entry: path.resolve(__dirname, '../src/main.jsx'),
     entry: {
-        main: path.resolve(__dirname, '../src/main.jsx'),
+        main: path.resolve(config.PROJECT_SRC_PATH, 'main.jsx'),
         framework: ['react', 'react-dom', 'react-router-dom'], // 配合 splitChunks cacheGroup 使用
+    },
+
+    resolve: {
+        extensions: ['.js', '.jsx', '.scss'],
+        alias: {
+            '@': config.PROJECT_SRC_PATH,
+        },
     },
 
     devtool: config[env].devtool,
@@ -80,6 +87,10 @@ module.exports = {
     },
 
     plugins: [
+        new WebpackBar({
+            name: env === 'development' ? '正在启动' : '正在打包',
+            color: '#fa8c16',
+        }),
         new webpack.DefinePlugin({
             'process.env': require(`./config/${env}.env`),
         }),
@@ -87,14 +98,10 @@ module.exports = {
         // https://www.jianshu.com/p/2b872ae3362d 默认使用ejs渲染模板
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: path.join(__dirname, '../public/index.html'), // 使用指定的渲染模板
+            template: path.resolve(config.PROJECT_PUBLIC_PATH, 'index.html'), // 使用指定的渲染模板
             inject: 'body', // 指定静态资源插入到 HTML 中的位置 (所有js资源插入到<body>的底部)
             // 也可以添加自定义的属性...
             showFavicon: true,
-        }),
-        new WebpackBar({
-            name: env === 'development' ? '正在启动' : '正在打包',
-            color: '#fa8c16',
         }),
     ],
 

@@ -1,7 +1,7 @@
-module.exports = {
+module.exports = publicPath => ({
     // bundle 资源可在此约定的路径下被访问到, `http://127.0.0.1:9000/${publicPath}main.js`
     // 注意: 和 output.path 没任何关系
-    publicPath: '/',
+    publicPath,
 
     // 使用 H5 History API 时 (比如 react-router-dom BrowserRouter), 会出现刷新 404 问题
     // 原因: 因为并没有任何的实际文件资源与之匹配
@@ -10,7 +10,7 @@ module.exports = {
         rewrites: [
             {
                 from: /\//,
-                to: '/index.html', // 注意! 如果设置了publicPath, 则需要: `${publicPath}index.html`
+                to: `${publicPath}index.html`, // 注意! 如果设置了publicPath, 则需要: `${publicPath}index.html`
             },
         ],
     },
@@ -26,4 +26,4 @@ module.exports = {
     clientLogLevel: 'info', // 日志等级
     // proxy,
     // before,
-};
+});
