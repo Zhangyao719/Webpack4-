@@ -1,5 +1,6 @@
 const merge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 const BundleAnalyzerPlugin =
     require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 var shell = require('shelljs');
@@ -29,4 +30,22 @@ module.exports = merge(base, {
             analyzerPort: 8888,
         }),
     ],
+    optimization: {
+        minimize: true,
+        minimizer: [
+            new TerserPlugin({
+                exclude: /node_modules/,
+                cache: true,
+                parallel: true, // 强烈建议开启多进程压缩
+                terserOptions: {
+                    // https://github.com/terser/terser#minify-options
+                    compress: { pure_funcs: ['console.log'] }, // 删除 console.log 语句
+                    output: {
+                        comments: false, // 删除 "@license", "@copyright", "@preserve" 这种开头
+                        beautify: false,
+                    },
+                },
+            }),
+        ],
+    },
 });

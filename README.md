@@ -223,3 +223,8 @@ dist
 ### 17. CSS 压缩
 
 - optimize-css-assets-webpack-plugin
+
+### 18.JS压缩
+
+- terser-webpack-plugin
+
