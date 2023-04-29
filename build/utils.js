@@ -3,6 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // 抽离 style-loader + css-loader + postcss-loader 公共处理
 exports.getCSSLoaders = ({
     isExtract = true,
+    sourceMap = false,
     styleLoaderOptions = {},
     cssLoaderOptions = {},
 } = {}) => [
@@ -14,6 +15,7 @@ exports.getCSSLoaders = ({
         loader: 'css-loader',
         options: {
             // https://v4.webpack.docschina.org/loaders/css-loader#root
+            sourceMap,
             importLoaders: 1,
             ...cssLoaderOptions,
         },
@@ -38,7 +40,7 @@ exports.getCSSLoaders = ({
                     require('postcss-normalize'),
                 ],
             },
-            // todo: source-map: true
+            sourceMap
         },
     },
 ];

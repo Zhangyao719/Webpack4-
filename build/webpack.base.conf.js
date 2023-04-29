@@ -42,6 +42,7 @@ module.exports = {
                 test: /\.css$/,
                 use: getCSSLoaders({
                     styleLoaderOptions: { publicPath: '../' }, // 指定 css 文件中, 引入静态资源的路径
+                    sourceMap: config[env].cssSourceMap,
                 }),
             },
             {
@@ -49,10 +50,8 @@ module.exports = {
                 use: [
                     ...getCSSLoaders({
                         styleLoaderOptions: { publicPath: '../' },
-                        cssLoaderOptions: {
-                            importLoaders: 2,
-                            sourceMap: config[env].cssSourceMap,
-                        },
+                        cssLoaderOptions: { importLoaders: 2 },
+                        sourceMap: config[env].cssSourceMap,
                     }),
                     {
                         loader: 'sass-loader',
