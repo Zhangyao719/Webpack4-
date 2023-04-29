@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WebpackBar = require('webpackbar');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const config = require('./config');
 const { getCSSLoaders } = require('./utils');
 
@@ -99,9 +100,17 @@ module.exports = {
             filename: 'index.html',
             template: path.resolve(config.PROJECT_PUBLIC_PATH, 'index.html'), // 使用指定的渲染模板
             inject: 'body', // 指定静态资源插入到 HTML 中的位置 (所有js资源插入到<body>的底部)
+            favicon: './favicon.ico', // 基于构建目录寻找的路径
             // 也可以添加自定义的属性...
-            showFavicon: true,
+            showCDNFavicon: false,
         }),
+        // 将已存在的静态资源复制到打包目录
+        new CopyPlugin([
+            {
+                from: path.resolve(config.PROJECT_PATH, 'favicon.ico'),
+                to: config.PROJECT_DIST_PATH,
+            },
+        ]),
     ],
 
     optimization: {

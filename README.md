@@ -228,3 +228,6 @@ dist
 
 - terser-webpack-plugin
 
+### 19.拷贝公共静态资源至打包目录
+
+- copy-webpack-plugin
