@@ -240,3 +240,10 @@ dist
     关联 dll 动态链接库
 - add-asset-html-webpack-plugin
     在 HTML 模板中导入 dll 脚本
+
+### 21.生成 Gzip 压缩格式文件
+
+- compress-webpack-plugin
+
+- 对 HTTP 传输内容进行重新编码，以缩小体积为目生成 .gz 格式文件。可以改进传输速度和带宽利用率。
+- 需要服务器开启 Gzip

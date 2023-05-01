@@ -1,8 +1,8 @@
 const merge = require('webpack-merge');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const BundleAnalyzerPlugin =
-    require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
+const GzipPlugin = require('compression-webpack-plugin');
 var shell = require('shelljs');
 const path = require('path');
 const base = require('./webpack.base.conf.js');
@@ -23,6 +23,13 @@ module.exports = merge(base, {
             filename: 'css/[name].[hash:8].css',
             chunkFilename: 'css/[id].[hash:8].css',
             ignoreOrder: false,
+        }),
+        // https://segmentfault.com/q/1010000012377236
+        // 需要服务器进行 gzip 配置
+        new GzipPlugin({
+            test: /\.(js|css)(\?.*)?$/i,
+            exclude: /node_modules/,
+            threshold: 10240,
         }),
         new BundleAnalyzerPlugin({
             analyzerMode: 'server',
