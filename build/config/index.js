@@ -2,6 +2,7 @@
 const path = require('path');
 
 const PROJECT_PATH = path.resolve(__dirname, '../../');
+const PROJECT_BUILD_PATH = path.resolve(PROJECT_PATH, 'build');
 const PROJECT_DIST_PATH = path.resolve(PROJECT_PATH, 'dist');
 const PROJECT_SRC_PATH = path.resolve(PROJECT_PATH, 'src');
 const PROJECT_PUBLIC_PATH = path.resolve(PROJECT_PATH, 'public');
@@ -26,6 +27,7 @@ const production = {
 
 module.exports = {
     PROJECT_PATH,
+    PROJECT_BUILD_PATH,
     PROJECT_DIST_PATH,
     PROJECT_SRC_PATH,
     PROJECT_PUBLIC_PATH,

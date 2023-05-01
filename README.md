@@ -231,3 +231,12 @@ dist
 ### 19.拷贝公共静态资源至打包目录
 
 - copy-webpack-plugin
+
+### 20.DLL 动态链接库
+
+- webpack.DllPlugin
+    生成 dll 资源和对应的 mainfest 配置清单。
+- webpack.DllReferencePlugin
+    关联 dll 动态链接库
+- add-asset-html-webpack-plugin
+    在 HTML 模板中导入 dll 脚本
