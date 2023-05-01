@@ -244,6 +244,13 @@ dist
 ### 21.生成 Gzip 压缩格式文件
 
 - compress-webpack-plugin
-
 - 对 HTTP 传输内容进行重新编码，以缩小体积为目生成 .gz 格式文件。可以改进传输速度和带宽利用率。
 - 需要服务器开启 Gzip
+
+### 22.优化：减少打包域 —— moment 语言包
+
+- 首先，强烈推荐你应该使用 `Day.js` 取代 `Moment.js`。难言之隐，一换了之。
+
+- moment-locales-webpack-plugin
+
+  会忽略 moment -> locale 文件夹下的各种语言包。

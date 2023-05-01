@@ -3,6 +3,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 const GzipPlugin = require('compression-webpack-plugin');
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
 var shell = require('shelljs');
 const path = require('path');
 const base = require('./webpack.base.conf.js');
@@ -30,6 +31,9 @@ module.exports = merge(base, {
             test: /\.(js|css)(\?.*)?$/i,
             exclude: /node_modules/,
             threshold: 10240,
+        }),
+        new MomentLocalesPlugin({
+            localesToKeep: ['zh-cn'],
         }),
         new BundleAnalyzerPlugin({
             analyzerMode: 'server',

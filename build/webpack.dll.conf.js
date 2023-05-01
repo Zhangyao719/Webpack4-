@@ -11,6 +11,8 @@ module.exports = {
             'react',
             'react-dom',
             'react-router-dom',
+            'dayjs',
+            // 'moment',
             // 'history',
             // 'react-redux',
             // 'react-tracked',
